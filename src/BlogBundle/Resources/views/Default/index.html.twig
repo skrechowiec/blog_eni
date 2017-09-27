@@ -1,1 +1,14 @@
-Hello World!
+{% extends'BlogBundle::base.html.twig' %}
+
+{% block title %}{{ parent() }} | Accueil{% endblock %}
+
+
+
+{% block content %}
+
+    {% for article in articles %}
+        <div><a href="{{ path('article_detail',{'id': article.id }) }}" title='le detail' >{{ article.Titre }}</a>
+        <i>Crée par : {{ article.auteur.username }} le {{ article.dateCreation|date("d-m-Y") }}</i>
+    {% endfor %}
+
+{% endblock %}

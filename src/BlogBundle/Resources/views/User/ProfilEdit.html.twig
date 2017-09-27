@@ -1,0 +1,7 @@
+{% extends 'BlogBundle::base.html.twig' %}
+
+{% block content %}
+    {{ form(form, {'attr':{'novalidate':'novalidate'}}) }}
+{% endblock %}
+
+{% block title %}Connexion | {{ parent() }}{% endblock %}

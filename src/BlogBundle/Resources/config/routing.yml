@@ -1,3 +1,36 @@
 blog_homepage:
     path:     /
-    defaults: { _controller: BlogBundle:Default:index }
+    defaults: { _controller: BlogBundle:Articles:index }
+
+login:
+    path:    /connexion/
+    defaults: { _controller: BlogBundle:Users:login }
+register:
+    path:    /enregistrement/
+    defaults: { _controller: BlogBundle:Users:register }
+logout:
+    path:    /deconnexion/
+delete_user:
+    path:    /suppression-compte/{id}
+    defaults: { _controller: BlogBundle:Users:delete}
+    requirements:
+        id: '\d+'
+MdP_edit:
+    path:    /modification/password/{id}
+    defaults: { _controller: BlogBundle:Users:MdPEdit }
+    requirements:
+        id: '\d+'
+profil_edit:
+    path:    /modification/profil/{id}
+    defaults: { _controller: BlogBundle:Users:ProfilEdit }
+    requirements:
+        id: '\d+'
+
+article_detail:
+    path:    /article/{id}/
+    defaults: { _controller: BlogBundle:Articles:detail }
+    requirements:
+        id: '\d+'
+article_creation:
+    path:   /redaction-article/
+    defaults: { _controller: BlogBundle:Articles:creation}

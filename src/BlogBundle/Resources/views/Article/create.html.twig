@@ -1,0 +1,9 @@
+{% extends'BlogBundle::base.html.twig' %}
+
+{% block title %}Ajout d'article | {{ parent() }}{% endblock %}
+
+{% block content %}
+
+    {{ form(form, {'attr':{'novalidate':'novalidate'}}) }}
+
+{% endblock %}

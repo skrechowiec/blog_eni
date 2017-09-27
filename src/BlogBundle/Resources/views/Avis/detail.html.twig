@@ -1,0 +1,42 @@
+{% extends'BlogBundle::base.html.twig' %}
+
+{% block title %}{{ article.titre }} | {{ parent() }}{% endblock %}
+
+{% block content %}
+    <h1>titre : {{ article.titre }}</h1>
+    <div>
+        <div>article : {{ article.article }}</div><br>
+        <div>créé le {{ article.datecreation|date("d-m-Y") }}
+            <hr>
+            {% if (article.listeAvis)|length > 0 %}
+            <table>
+                <tr>
+                    <td>commentaire</td>
+                    <td>pseudo</td>
+                    <td>date</td>
+                    <td>heure</td>
+                </tr>
+                {%  for commentaire in article.listeAvis  %}
+                    <tr>
+                    <td>{{ commentaire.avis }}</td>
+                    <td>{{ commentaire.pseudo }}</td>
+                    <td>{{ commentaire.datecreation |date("d-m-Y")}}</td>
+                    <td>{{ commentaire.heurecreation|date("H:i") }}</td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <td><a href="#" class="btn btn-default" >
+                                <span class="glyphicon glyphicon-edit" >Modifier</span></a></td>
+                        <td><a href="#" class="btn btn-danger" >
+                                <span class="glyphicon glyphicon-remove" >Supprimer</span></a></td>
+                    {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+            {% else %}
+                <h4>Pas de commentaire actuel</h4>
+            {% endif %}
+            {% block formulaire %}
+                {{ form(form, {'attr':{'novalidate':'novalidate'}}) }}
+            {% endblock %}
+        </div>
+    <div>
+{% endblock %}
